@@ -1,6 +1,4 @@
 
-
-demanderChoix();
 const apprenants = require("./data");
 const prompt = require("prompt-sync")();
 const {
