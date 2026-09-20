@@ -39,7 +39,7 @@ function demanderChoix() {
 
     if (choix === "0") {
 
-      console.log("Au revoir !");
+      console.log("BYE");
       continuer = false;
 
     } else if (choix === "1") {
