@@ -67,7 +67,7 @@ function demanderChoix() {
             let resultat = apprenant.resultats[j];
             console.log(
               "  - Jour", resultat.jour + ":",
-              r.exercicesTermines + "/" + resultat.totalExercices, "exercices,",
+              resultat .exercicesTermines + "/" + resultat.totalExercices, "exercices,",
               "challenge:", resultat.challengeTermine ? "oui" : "non"
             );
           }
