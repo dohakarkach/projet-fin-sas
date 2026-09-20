@@ -56,7 +56,7 @@ function demanderChoix() {
         let apprenant = apprenants[i];
 
         console.log("ID :", apprenant.id);
-        console.log("Nom :", apprenant.nomComplet || apprenant.nomcomplet);
+        console.log("Nom :", apprenant.nomComplet);
         console.log("Ville :", apprenant.ville);
 
         if (apprenant.resultats.length === 0) {
