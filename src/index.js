@@ -64,11 +64,11 @@ function demanderChoix() {
         } else {
           console.log("Résultats :");
           for (let j = 0; j < apprenant.resultats.length; j++) {
-            let r = apprenant.resultats[j];
+            let resultat = apprenant.resultats[j];
             console.log(
-              "  - Jour", r.jour + ":",
-              r.exercicesTermines + "/" + r.totalExercices, "exercices,",
-              "challenge:", r.challengeTermine ? "oui" : "non"
+              "  - Jour", resultat.jour + ":",
+              r.exercicesTermines + "/" + resultat.totalExercices, "exercices,",
+              "challenge:", resultat.challengeTermine ? "oui" : "non"
             );
           }
         }
