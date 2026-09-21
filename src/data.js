@@ -35,7 +35,7 @@ challengeTermine: false
 {
 id: 3,
 nomComplet: "fati chakouri" ,
-ville: "taza",
+ville: "misour",
 resultats:[
 {
 jour: 1,
@@ -54,7 +54,7 @@ challengeTermine: false
 {
 id: 4,
 nomComplet:"doha kark",
-ville: "misour",
+ville: "taza",
 rsultats:[{
 jour: 1,
 exercicesTermines: 16,
@@ -76,17 +76,15 @@ challengeTermine: false
 ]
 },
 ]
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = apprenants;
+
+
+
+
+
+
+
+
+
+
 

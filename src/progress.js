@@ -49,18 +49,31 @@ let progression = (totalTermines / totalExercices) * 100;
 return progression;
 }
 
-function filtrerParNiveau (apprenant,niveau){
-let resultats =[];
-for (let i=0;i<apprenant.length ;i++){
+function filtrerParNiveau(apprenant, niveau) {
 
-  let progression = calculerProgression (apprenant[i]);
+  let resultats = [];
 
-if(progression>=80 && niveau==="solide"){
- resultats.push(apprenant[i]);}
-if(progression<=79 && progression >=50 && niveau==="En progression"){
-  resultats.push(apprenant[i]);}
-if(progression<50 && niveau === "a renforcer"){
-   resultats.push(apprenant[i]);}}return resultats;}
+  for (let i = 0; i < apprenant.length; i++) {
+
+    let progression = calculerProgression(apprenant[i]);
+
+    if (progression >= 80 && niveau === "solide") {
+      resultats.push(apprenant[i]);
+    }
+
+    if (progression >= 50 && progression < 80 && niveau === "En progression") {
+      resultats.push(apprenant[i]);
+    }
+
+    if (progression < 50 && niveau === "a renforcer") {
+      resultats.push(apprenant[i]);
+    }
+  }
+
+  return resultats;
+}
+
+
 
 function trierParProgression(apprenant) {
 
@@ -77,8 +90,8 @@ function trierAlphabetique(apprenant) {
 
   apprenant.sort(function(a, b) {
 
-    let nomA = normaliserNom(a.nomcomplet || a.nomComplet || "");
-    let nomB = normaliserNom(b.nomcomplet || b.nomComplet || "");
+    let nomA = normaliserNom(a.nomcomplet);
+    let nomB = normaliserNom(b.nomcomplet);
 
     if (nomA < nomB) return -1;
     if (nomA > nomB) return 1;
@@ -104,31 +117,28 @@ function afficherTableauDeBord(apprenants) {
 
   console.log("\n--- TABLEAU DE BORD ---");
   console.log("Nombre total d'apprenants :", apprenants.length);
-  console.log("");
 
   for (let i = 0; i < apprenants.length; i++) {
 
     let apprenant = apprenants[i];
     let progression = calculerProgression(apprenant);
-
     let challengesTermines = 0;
+
     for (let j = 0; j < apprenant.resultats.length; j++) {
+
       if (apprenant.resultats[j].challengeTermine === true) {
         challengesTermines++;
       }
     }
 
     console.log("ID :", apprenant.id);
-    console.log("Nom :", apprenant.nomComplet || apprenant.nomcomplet);
+    console.log("Nom :", apprenant.nomComplet);
     console.log("Ville :", apprenant.ville);
     console.log("Progression :", progression.toFixed(1) + "%");
     console.log("Challenges terminés :", challengesTermines);
     console.log("---");
-
   }
-
 }
-
 module.exports = {
   normaliserNom,
   validerResultat,

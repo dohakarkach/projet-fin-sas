@@ -32,7 +32,7 @@ function demanderChoix() {
 
   while (continuer) {
 
-    console.clear();
+    
     afficherMenu();
 
     let choix = prompt("Votre choix : ");
@@ -59,19 +59,6 @@ function demanderChoix() {
         console.log("Nom :", apprenant.nomComplet);
         console.log("Ville :", apprenant.ville);
 
-        if (apprenant.resultats.length === 0) {
-          console.log("Résultats : aucun");
-        } else {
-          console.log("Résultats :");
-          for (let j = 0; j < apprenant.resultats.length; j++) {
-            let resultat = apprenant.resultats[j];
-            console.log(
-              "  - Jour", resultat.jour + ":",
-              resultat .exercicesTermines + "/" + resultat.totalExercices, "exercices,",
-              "challenge:", resultat.challengeTermine ? "oui" : "non"
-            );
-          }
-        }
 
         console.log("---");
       }
@@ -81,69 +68,71 @@ function demanderChoix() {
     } else if (choix === "3") {
 
       let id = Number(prompt("ID du nouvel apprenant : "));
-      let nomcomplet = prompt("Nom complet : ");
+      let nomComplet = prompt("Nom complet : ");
       let ville = prompt("Ville : ");
 
       let nouvelApprenant = {
         id: id,
-        nomcomplet: nomcomplet,
+        nomcomplet: nomComplet,
         ville: ville,
         resultats: []
       };
+if (ajouterApprenant(apprenants, nouvelApprenant)) {
+    console.log("Apprenant ajouté !");
+  } else {
+    console.log("ID déjà utilisé.");
+  }
 
-      let succes = ajouterApprenant(apprenants, nouvelApprenant);
+  prompt("Entrée pour continuer...");
 
-      if (succes) {
-        console.log("Apprenant ajouté !");
-      } else {
-        console.log("Un apprenant avec cet ID existe déjà.");
-      }
-      prompt("\nAppuyez sur Entrée pour continuer...");
+      
 
-    } else if (choix === "4") {
+}  else if (choix === "4") {
 
-      let idRecherche = Number(prompt("ID de l'apprenant à consulter : "));
-      let trouve = consulterApprenant(apprenants, idRecherche);
+  let idRecherche = Number(prompt("ID de l'apprenant à consulter : "));
+  let trouve = consulterApprenant(apprenants, idRecherche);
 
-      if (trouve) {
-        console.log(trouve);
-      } else {
-        console.log("Aucun apprenant trouvé avec cet ID.");
-      }
-      prompt("\nAppuyez sur Entrée pour continuer...");
+  if (trouve) {
+    console.log(trouve);
+  } else {
+    console.log("Aucun apprenant trouvé avec cet ID.");
+  }
 
-    } else if (choix === "5") {
+  prompt("Entrée pour continuer...");
+}
 
-      let idApprenant = Number(prompt("ID de l'apprenant : "));
-      let apprenant = consulterApprenant(apprenants, idApprenant);
+     else if (choix === "5") {
 
-      if (!apprenant) {
-        console.log("Aucun apprenant trouvé avec cet ID.");
-      } else {
+  let id = Number(prompt("ID : "));
+  let apprenant = consulterApprenant(apprenants, id);
 
-        let jour = Number(prompt("Jour (1-7) : "));
-        let exercicesTermines = Number(prompt("Exercices terminés : "));
-        let totalExercices = Number(prompt("Total d'exercices : "));
-        let challengeTermine = prompt("Challenge terminé ? (oui/non) : ") === "oui";
+  if (!apprenant) {
+    console.log("Apprenant introuvable.");
+  } else {
 
-        let resultat = {
-          jour: jour,
-          exercicesTermines: exercicesTermines,
-          totalExercices: totalExercices,
-          challengeTermine: challengeTermine
-        };
+    let jour = Number(prompt("Jour : "));
+    let exercices = Number(prompt("Exercices terminés : "));
+    let total = Number(prompt("Total exercices : "));
+    let challenge = prompt("Challenge terminé ? (oui/non) : ") === "oui";
 
-        let succes = enregistrerResultat(apprenant, resultat);
+    let resultat = {
+      jour: jour,
+      exercicesTermines: exercices,
+      totalExercices: total,
+      challengeTermine: challenge
+    };
 
-        if (succes) {
-          console.log("Résultat enregistré !");
-        } else {
-          console.log("Résultat invalide.");
-        }
-      }
-      prompt("\nAppuyez sur Entrée pour continuer...");
+    if (enregistrerResultat(apprenant, resultat)) {
+      console.log("Résultat enregistré !");
+    } else {
+      console.log("Résultat invalide.");
+    }
+  }
 
-    } else if (choix === "6") {
+  prompt("Entrée pour continuer...");
+}
+
+     else if (choix === "6") {
 
       let idRecherche = Number(prompt("ID à rechercher : "));
       let apprenant = rechercherApprenant(apprenants, idRecherche);
